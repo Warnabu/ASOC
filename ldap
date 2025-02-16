@@ -1,7 +1,7 @@
 sudo apt install slapd ldap-utils -y
 
 
-sudo dpkg-reconfigure slapd
+sudo dpkg-reconfigure slapd(no, algo.local, algo, yes, yes)
 
 anadir una entrada
 ldapadd -x -D "cn=admin,dc=ejemplo,dc=com" -W -f archivo.ldif
