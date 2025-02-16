@@ -82,15 +82,14 @@ Verificar los registros de Samba:
    read only = yes
    guest ok = no
    write list = @editores
-   valid users = @autorizados, @editores
+   valid users = @autorizados, @editores, @administradores, @jefes
 [privado]
-   comment = Solo para admins y jefes        
+   comment = Solo para admins y jefes
    path = /srv/samba/privado
    browseable = yes
-   read only = yes 
-   guest ok = no   
-   write list = @administracion         
-   valid users = @administracion, @jefes
-
+   read only = yes
+   guest ok = no
+   write list = @administradores
+   valid users = @administradores, @jefes
 
 
