@@ -1,3 +1,13 @@
+sudo apt install slapd ldap-utils -y
+
+
+sudo dpkg-reconfigure slapd
+
+anadir una entrada
+ldapadd -x -D "cn=admin,dc=ejemplo,dc=com" -W -f archivo.ldif
+
+
+
 dn: uid=$nombre,ou=$unidad,dc=$dominio,dc=local
 changetype: modify
 replace: mail
