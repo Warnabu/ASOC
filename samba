@@ -1,0 +1,87 @@
+1. Configuración de recursos compartidos:
+
+Para definir un recurso compartido en el archivo de configuración de Samba (smb.conf), se utiliza la siguiente estructura:
+
+[recurso_compartido]
+    path = /ruta/del/recurso
+    comment = Descripción del recurso
+    read only = no
+    guest ok = yes
+    create mask = 0777
+    directory mask = 0777
+    force user = usuario
+    force group = grupo
+    valid users = usuario1, usuario2
+    hosts allow = 192.168.1.0/24
+    hosts deny = 192.168.2.0/24
+
+    path: Ruta del directorio o archivo que se va a compartir.
+    comment: Descripción del recurso compartido.
+    read only: Si se establece en no, permite escritura en el recurso.
+    guest ok: Si se establece en yes, permite el acceso anónimo al recurso.
+    create mask: Máscara de permisos para archivos creados en el recurso compartido.
+    directory mask: Máscara de permisos para directorios creados en el recurso compartido.
+    force user: Fuerza que los archivos creados en el recurso compartido pertenezcan a un usuario específico.
+    force group: Fuerza que los archivos creados en el recurso compartido pertenezcan a un grupo específico.
+    valid users: Lista de usuarios permitidos para acceder al recurso.
+    hosts allow: Lista de direcciones IP o rangos permitidos para acceder al recurso.
+    hosts deny: Lista de direcciones IP o rangos denegados para acceder al recurso.
+
+2. Gestión de usuarios y grupos:
+
+    Agregar un usuario a Samba:
+
+                          smbpasswd -a nombre_usuario
+
+Eliminar un usuario de Samba:
+
+                          smbpasswd -x nombre_usuario
+
+3. Herramientas de diagnóstico:
+
+    Listar recursos compartidos disponibles:
+
+                          smbclient -L nombre_del_servidor
+
+Conectarse a un recurso compartido:
+
+                          smbclient //nombre_del_servidor/nombre_del_recurso -U nombre_usuario
+
+Probar la conectividad SMB:
+
+                          smbclient -L nombre_del_servidor -U nombre_usuario
+
+Verificar la configuración de Samba:
+
+                          testparm
+
+Reiniciar el servicio de Samba:
+
+                          systemctl restart smbd
+
+Verificar el estado del servicio de Samba:
+
+                          systemctl status smbd
+
+Verificar los registros de Samba:
+
+                          tail -f /var/log/samba/log.smbd
+
+
+[publico]
+   comment = Recurso publico
+   path = /srv/samba/publico
+   browseable = yes
+   read only = no
+   guest ok = yes
+   write list = @root
+[administracion]
+   comment = Solo para grupo administracion
+   path = /srv/samba/administracion
+   browseable = yes
+   read only = yes
+   guest ok = no
+   write list = @administracion
+   valid users = @administracion, @jefes
+
+
