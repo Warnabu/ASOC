@@ -1,0 +1,14 @@
+dn: uid=$nombre,ou=$unidad,dc=$dominio,dc=local
+changetype: modify
+replace: mail
+mail: $nombre.$ape@nombreDominio.local
+
+
+ldapmodify -x -D "cn=admin,dc=ejemplo,dc=com" -W -f modificar_usuario.ldif
+
+
+
+eliminar usuarios
+ldapdelete -x -W -D 'cn=admin,dc=daniel,dc=local' "uid=roberto,ou=empleados,dc=daniel,dc=local"
+buscar usuarios
+ldapsearch -xLLL -b "dc=daniel,dc=local" uid=roberto
