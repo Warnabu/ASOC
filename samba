@@ -27,6 +27,9 @@ Para definir un recurso compartido en el archivo de configuración de Samba (smb
     hosts allow: Lista de direcciones IP o rangos permitidos para acceder al recurso.
     hosts deny: Lista de direcciones IP o rangos denegados para acceder al recurso.
 
+ver usuarios de samba
+                         sudo pdbedit -L
+
 2. Gestión de usuarios y grupos:
 
     Agregar un usuario a Samba:
